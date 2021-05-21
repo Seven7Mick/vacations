@@ -1,13 +1,19 @@
 <template>
   <div id="app">
     <div class="wrapper">
-      <PersonInfo class="person-info"/>
+      <PersonInfo class="person-info" />
 
-      <TabletForm class="tablet-form"/>
+      <TabletForm class="tablet-form" />
 
-      <FilterPage />
+      <FilterPage class="filter" />
 
-      <GlobalCalendar />
+      <div v-if="stateTabs">
+        <TabNav />
+        <router-view />
+      </div>
+      
+      <GlobalCalendar v-else />
+      
     </div>
   </div>
 </template>
@@ -15,8 +21,10 @@
 <script>
 import PersonInfo from "@/components/PersonInfo";
 import FilterPage from "@/components/FilterPage";
+import TabletForm from "@/components/TabletForm";
+import TabNav from "@/components/TabNav";
+import { mapGetters } from "vuex";
 import GlobalCalendar from "@/components/GlobalCalendar";
-import TabletForm from "@/components/TabletForm"
 
 export default {
   name: "App",
@@ -24,18 +32,25 @@ export default {
     PersonInfo,
     TabletForm,
     FilterPage,
+    TabNav,
     GlobalCalendar,
   },
-  data(){
-    return{
-
+  data() {
+    return {};
+  },
+  computed: {
+    ...mapGetters(["allUsers"]),
+    stateTabs(){
+      return this.allUsers[0].level
     }
   },
 };
 </script>
 
 <style>
-*{
+@import "./style/null.css";
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -50,19 +65,23 @@ export default {
   background-color: rgb(172, 172, 172);
 }
 
-.wrapper{
+.wrapper {
   max-width: 1440px;
   margin: 0 auto;
   padding: 40px 20px;
-  background-color:rgba(255, 255, 255, 0.24);
+  background-color: rgba(255, 255, 255, 0.24);
   border-radius: 20px;
 }
 
-.person-info{
+.person-info {
   margin-bottom: 50px;
 }
 
-.tablet-form{
+.tablet-form {
   margin-bottom: 50px;
+}
+
+.filter {
+  margin-bottom: 25px;
 }
 </style>

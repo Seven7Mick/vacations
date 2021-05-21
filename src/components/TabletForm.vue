@@ -26,30 +26,41 @@
       </tbody>
     </table>
 
-    <button class="tablet-form__btn" type="submit">Submit tablet</button>
+    <Button v-bind="button"/>
   </form>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import Button from "@/components/Button";
 
 export default {
+  components:{
+    Button,
+  },
   data() {
-    return {};
+    return {
+      button: {
+        buttonName: "Отправить",
+        buttonType: "submit",
+        buttonDisabled: false,
+      },
+    };
   },
   computed: {
     ...mapGetters(["allVacations"]),
-    counterDaysVacations() {
-      let counterDays;
-      for (let vac of this.allVacations) {
-        counterDays =
-          Math.floor(
-            (new Date(vac.dataEnd) - new Date(vac.dataStart)) /
-              (1000 * 60 * 60 * 24)
-          ) + 1;
-      }
-      return counterDays;
-    },
+    // counterDaysVacations() {
+    //   let counterDays;
+
+    //   for (let vac of this.allVacations) {
+    //     counterDays =
+    //       Math.floor(
+    //         (new Date(vac.dataEnd) - new Date(vac.dataStart)) /
+    //           (1000 * 60 * 60 * 24)
+    //       ) + 1;
+    //   }
+    //   return counterDays;
+    // },
   },
 };
 </script>
@@ -66,17 +77,27 @@ export default {
   margin-right: 100px;
   font-size: 16px;
   line-height: 150%;
-  background-color: bisque;
+  background-color: #e4e4e4;;
 }
 
 .tablet-form__table > thead > tr > td {
   width: 200px;
   height: 24px;
+  border-bottom: 1px solid black;
+}
+
+.tablet-form__table > thead > tr > td:not(:last-child){
+  border-right: 1px solid black;
 }
 
 .tablet-form__table > tbody > tr > td {
   width: 200px;
   height: 24px;
+  border-bottom: 1px solid black;
+}
+
+.tablet-form__table > tbody > tr > td:not(:last-child){
+  border-right: 1px solid black;
 }
 
 .tablet-form__btn {

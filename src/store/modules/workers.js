@@ -17,13 +17,13 @@ export default {
             discription: "Основной отпуск",
           },
           {
-            days_res: 14,
-            days: 14,
+            days_res: 12,
+            days: 12,
             discription: "За доп должность",
           }
         ],
         boss_id: 1,
-        level: 0,
+        level: 1,
       },
       {
         user_id: 2,
@@ -55,7 +55,7 @@ export default {
             discription: "За доп должность",
           }
         ],
-        boss_id: 1,
+        boss_id: 0,
         level: 0,
       }
     ],
